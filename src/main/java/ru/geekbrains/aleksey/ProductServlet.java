@@ -16,9 +16,9 @@ public class ProductServlet extends HttpServlet {
     private Logger logger = LoggerFactory.getLogger(ProductServlet.class);
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         logger.info("New GET request");
-        resp.getWriter().println("<h1>Продукты</h1>");
+        getServletContext().getRequestDispatcher("/products.jsp").forward(req,resp);
     }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) {

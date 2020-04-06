@@ -16,9 +16,9 @@ public class OrderServlet extends HttpServlet {
     private Logger logger = LoggerFactory.getLogger(OrderServlet.class);
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         logger.info("New GET request");
-        resp.getWriter().println("<h1>Оформление заказа</h1>");
+        getServletContext().getRequestDispatcher("/order.jsp").forward(req,resp);
     }
 
     @Override
