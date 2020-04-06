@@ -3,42 +3,25 @@ package ru.geekbrains.aleksey;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.Serializable;
 
 @WebServlet(name = "CartServlet", urlPatterns = "/cart")
-public class CartServlet implements Servlet, Serializable {
-    private Logger logger = LoggerFactory.getLogger(MainServlet.class);
-    private transient ServletConfig config;
+public class CartServlet extends HttpServlet {
+    private Logger logger = LoggerFactory.getLogger(CartServlet.class);
 
     @Override
-    public void init(ServletConfig servletConfig) throws ServletException {
-        this.config = config;
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        logger.info("New GET request");
+        resp.getWriter().println("<h1>Корзина</h1>");
     }
 
     @Override
-    public ServletConfig getServletConfig() {
-        return this.config;
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
+        logger.info("New POST request");
+
     }
-
-    @Override
-    public void service(ServletRequest servletRequest, ServletResponse servletResponse) throws ServletException, IOException {
-        logger.info("New request");
-
-        servletResponse.getWriter().println("<h1>Корзина</h1>");
-    }
-
-    @Override
-    public String getServletInfo() {
-        return "Hello from CartServlet";
-    }
-
-    @Override
-    public void destroy() {
-        logger.info("CartServlet class destroy");
-    }
-
-//    resp.setHeader("Content-type","text/html; charset=utf8");
 }
