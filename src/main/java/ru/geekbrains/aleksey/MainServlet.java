@@ -17,6 +17,6 @@ public class MainServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.getWriter().println("<h1>Главная страница</h1>");
+        getServletContext().getRequestDispatcher("/mainpage.jsp").forward(req,resp);
     }
 }
